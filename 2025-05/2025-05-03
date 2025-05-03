@@ -1,0 +1,126 @@
+
+# 📘 JavaScript 기초 정리 및 학습 회고
+
+> 작성일: 2025-05-03  
+> 작성자: [GitHub: stylechoi](https://github.com/stylechoi)  
+> 학습 방식: 모던 JavaScript Deep Dive + 실습 기반 정리
+
+---
+
+## ✅ 학습 목표
+
+- 자바스크립트의 기본 문법 및 개념을 완전 정복한다.
+- HTML, CSS와의 연계를 염두에 두고 실전에서 바로 쓸 수 있는 자바스크립트를 익힌다.
+- DOM 조작, 이벤트, 함수, 객체 등 실무에서 자주 쓰는 것 위주로 학습한다.
+
+---
+
+## 📒 1. 변수 선언과 자료형
+
+```js
+var x = 10;       // 재선언/재할당 가능 (지양)
+let y = 20;       // 재할당 가능, 재선언 불가
+const z = 30;     // 재할당 불가, 상수
+```
+
+- **자료형**: number, string, boolean, null, undefined, object, symbol  
+- **typeof 연산자**로 타입 확인 가능
+
+---
+
+## 📒 2. 함수 선언
+
+```js
+// 함수 선언식
+function sayHello(name) {
+  return `Hello, ${name}`;
+}
+
+// 함수 표현식
+const sayBye = function(name) {
+  return `Bye, ${name}`;
+};
+
+// 화살표 함수 (Arrow Function)
+const greet = (name) => `Hi, ${name}`;
+```
+
+---
+
+## 📒 3. 조건문과 반복문
+
+```js
+if (x > 10) {
+  console.log("크다");
+} else {
+  console.log("작다");
+}
+
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+
+while (x > 0) {
+  x--;
+}
+```
+
+---
+
+## 📒 4. 배열과 객체
+
+```js
+const arr = [1, 2, 3];
+arr.push(4);         // 배열에 값 추가
+
+const user = {
+  name: "철수",
+  age: 25
+};
+console.log(user.name);    // 점 표기법
+console.log(user["age"]);  // 대괄호 표기법
+```
+
+---
+
+## 📒 5. DOM 조작 (기초)
+
+```js
+const title = document.getElementById("title");
+title.innerText = "바뀐 제목";
+
+const btn = document.querySelector(".btn");
+btn.addEventListener("click", () => {
+  alert("버튼 클릭됨!");
+});
+```
+
+---
+
+## 📒 6. 기타 중요 개념 요약
+
+| 개념 | 설명 |
+|------|------|
+| hoisting | 변수/함수 선언이 위로 끌어올려지는 현상 |
+| scope | 변수의 유효 범위 (global vs local) |
+| closure | 외부 함수의 변수를 참조하는 내부 함수 |
+| this | 실행 컨텍스트에 따라 달라지는 참조값 |
+| 이벤트 버블링 | 하위 → 상위로 이벤트 전달됨 |
+| JSON | 데이터를 문자열로 직렬화해서 저장/전송할 때 사용 |
+
+---
+
+## 🧠 느낀 점 / 회고
+
+- 함수형 문법, 화살표 함수 문법에 익숙해질수록 코드가 간결해진다.
+- DOM 조작은 HTML/CSS 구조를 정확히 이해해야 효과적으로 다룰 수 있다.
+- ‘this’는 상황에 따라 달라지므로 화살표 함수와 일반 함수의 차이를 정확히 알고 있어야 함.
+- 앞으로는 **비동기 처리 (Promise, async/await)**, **ES6+ 문법**, **모듈화** 쪽도 정리할 예정.
+
+---
+
+## 🗂️ 참고 자료
+
+- [모던 JavaScript Deep Dive](https://github.com/namjunemy/TIL/blob/main/javascript/Modern%20JavaScript%20Deep%20Dive.md)
+- [MDN JavaScript](https://developer.mozilla.org/ko/docs/Web/JavaScript)
+- [코드잇 JavaScript 강의](https://www.codeit.kr)
