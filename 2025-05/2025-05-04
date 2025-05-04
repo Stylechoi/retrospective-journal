@@ -1,0 +1,105 @@
+# 📘 JavaScript 비동기 처리 개념 정리 및 학습 회고
+
+> 작성일: 2025-05-04  
+> 작성자: [GitHub: stylechoi](https://github.com/stylechoi)  
+> 학습 방식: 모던 JavaScript Deep Dive + 실습 기반 정리
+
+---
+
+## ✅ 학습 목표
+
+- 자바스크립트에서 **비동기 처리**의 필요성과 동작 원리를 이해한다.
+- `Promise`, `async/await`를 활용한 비동기 로직 작성을 연습한다.
+- 콜백 지옥을 해결하는 방법을 체득하고 실무 활용까지 대비한다.
+
+---
+
+## 📒 1. 비동기 처리란?
+
+- 자바스크립트는 **단일 스레드** 기반 언어라서, 블로킹 없이 **비동기 작업**이 필수.
+- 예: 서버에서 데이터 요청, 타이머, 사용자 입력 등  
+- 동기식: 순차 실행 / 비동기식: 특정 작업이 끝나기를 **기다리지 않고** 다음 작업 수행
+
+---
+
+## 📒 2. 콜백 함수의 한계 (콜백 지옥)
+
+```js
+setTimeout(() => {
+  console.log("1초 후 실행");
+  setTimeout(() => {
+    console.log("2초 후 실행");
+    setTimeout(() => {
+      console.log("3초 후 실행");
+    }, 1000);
+  }, 1000);
+}, 1000);
+
+중첩 구조로 인해 코드가 복잡하고 유지보수가 어려움
+
+이걸 해결하기 위해 Promise 도입
+
+## 📒 3. Promise 기본 문법
+
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    const success = true;
+    if (success) {
+      resolve("성공!");
+    } else {
+      reject("실패!");
+    }
+  });
+};
+
+fetchData()
+  .then(result => console.log(result))
+  .catch(err => console.error(err));
+
+resolve 호출 → 성공
+reject 호출 → 실패
+then, catch로 결과 처리
+
+## 📒 4. async / await 문법
+
+const fetchUser = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("유저 데이터 가져옴");
+    }, 1000);
+  });
+};
+
+const showUser = async () => {
+  const result = await fetchUser();
+  console.log(result);
+};
+
+showUser();   1초 후 '유저 데이터 가져옴' 출력
+
+async 함수는 항상 Promise 반환
+
+await는 Promise가 처리될 때까지 기다림 (비동기 작업을 동기처럼 작성 가능)
+
+## 📒 5. 에러 처리와 실전 팁
+
+const getData = async () => {
+  try {
+    const result = await fetchUser();
+    console.log(result);
+  } catch (error) {
+    console.error("에러 발생:", error);
+  }
+};
+
+try/catch를 통해 async 내부 에러 핸들링 가능
+
+실제 API 호출에서 매우 중요함
+
+## 🧠 느낀 점 / 회고
+
+Promise 체인보다 async/await 문법이 훨씬 읽기 쉽고 구조도 깔끔했다.
+
+단순히 문법만 외우는 것이 아니라, 비동기 흐름 자체를 이해하는 게 중요하다는 걸 느낌.
+
+앞으로 fetch, axios, 서버 통신 구현 등에서 필수로 쓰이기 때문에 계속 반복 숙달할 예정.
